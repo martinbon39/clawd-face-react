@@ -15,7 +15,9 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
   const mouthRef = useRef(null)
   const [showHelp, setShowHelp] = useState(false)
   const [idleAction, setIdleAction] = useState(null)
+  const [internalSleep, setInternalSleep] = useState(false)
   const idleStartRef = useRef(Date.now())
+  const lastActiveRef = useRef(Date.now())
   const animFrameRef = useRef(null)
   const mouseRef = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
   const eyePosRef = useRef({ x: 0, y: 0 })
@@ -133,11 +135,11 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
     setTimeout(() => setIdleAction(null), 1000)
   }, [state, idleAction])
 
-  // Mouse tracking for eyes
+  // Mouse tracking for eyes (doesn't reset idle timer)
   useEffect(() => {
     const handleMouse = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY }
-      idleStartRef.current = Date.now()
+      // Don't reset idle timer on mouse move
     }
     window.addEventListener('mousemove', handleMouse)
     return () => window.removeEventListener('mousemove', handleMouse)
@@ -191,9 +193,50 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
     return () => window.removeEventListener('keydown', handler)
   }, [])
 
+  // Track activity from server state
+  useEffect(() => {
+    if (state !== 'idle') {
+      lastActiveRef.current = Date.now()
+      setInternalSleep(false)
+    }
+  }, [state])
+
+  // Auto-sleep after 60s of idle
+  useEffect(() => {
+    const checkSleep = setInterval(() => {
+      if (state === 'idle' && !internalSleep) {
+        if (Date.now() - lastActiveRef.current > 300000) { // 5 min
+          setInternalSleep(true)
+        }
+      }
+    }, 5000)
+    return () => clearInterval(checkSleep)
+  }, [state, internalSleep])
+
+  // Wake on click (anywhere)
+  const handleContainerClick = useCallback(() => {
+    if (internalSleep) {
+      setInternalSleep(false)
+      lastActiveRef.current = Date.now()
+    }
+  }, [internalSleep])
+
+  // Face click for easter eggs (only when awake)
+  const handleFaceClickWrapper = useCallback((e) => {
+    e.stopPropagation()
+    if (internalSleep) {
+      setInternalSleep(false)
+      lastActiveRef.current = Date.now()
+      return
+    }
+    handleFaceClick()
+  }, [internalSleep, handleFaceClick])
+
+  const effectiveState = internalSleep ? 'sleeping' : state
+
   return (
-    <div className={`${styles.container} ${styles[state]}`}>
-      <div className={styles.face} ref={faceRef} onClick={handleFaceClick}>
+    <div className={`${styles.container} ${styles[effectiveState]}`} onClick={handleContainerClick}>
+      <div className={styles.face} ref={faceRef} onClick={handleFaceClickWrapper}>
         <div className={styles.eyes}>
           <div className={`${styles.eye} ${styles.left}`} ref={eyeLRef} />
           <div className={`${styles.eye} ${styles.right}`} ref={eyeRRef} />
@@ -201,10 +244,10 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
         <div className={styles.mouth} ref={mouthRef} />
       </div>
       
-      {activity && <div className={styles.activity}>{activity}</div>}
-      <div className={styles.status}>{state}</div>
+      {activity && !internalSleep && <div className={styles.activity}>{activity}</div>}
+      <div className={styles.status}>{effectiveState}</div>
       
-      {state === 'sleeping' && (
+      {effectiveState === 'sleeping' && (
         <div className={styles.zzzContainer}>
           <span className={styles.zzz}>z</span>
           <span className={styles.zzz}>z</span>
