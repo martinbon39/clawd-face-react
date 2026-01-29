@@ -21,7 +21,7 @@ function App() {
     }
     
     poll()
-    const interval = setInterval(poll, 200)
+    const interval = setInterval(poll, 50)
     return () => clearInterval(interval)
   }, [])
 
