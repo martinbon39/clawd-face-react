@@ -1,0 +1,67 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root, .app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Debug panel */
+.debug-panel {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  font-size: 13px;
+  z-index: 1000;
+  max-width: 280px;
+}
+
+.debug-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #E8927C;
+}
+
+.debug-state {
+  margin-bottom: 12px;
+  padding: 6px 10px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+.debug-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.debug-buttons button {
+  padding: 4px 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.debug-buttons button:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+.debug-buttons button.active {
+  background: #E8927C;
+  border-color: #E8927C;
+  color: #000;
+}

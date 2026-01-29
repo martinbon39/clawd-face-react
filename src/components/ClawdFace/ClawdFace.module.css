@@ -1,0 +1,151 @@
+/* === CONTAINER === */
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #E8927C;
+  transition: background 0.6s ease-out;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  position: relative;
+}
+
+/* === STATE BACKGROUNDS === */
+.idle { background: #E8927C; }
+.thinking { background: #7C9FE8; }
+.talking { background: #7CE8A3; }
+.sleeping { background: #1a1a24; }
+.happy { background: #E8D77C; }
+.curious { background: #C77CE8; }
+.excited { background: #E87CA3; }
+.focused { background: #4A6FA5; }
+.confused { background: #E8B07C; }
+.proud { background: #7CE8D4; }
+.bored { background: #9E9E9E; }
+.surprised { background: #E87C7C; }
+.working { background: #5C7C5C; }
+.listening { background: #A3E87C; }
+.processing { background: #7C8BE8; }
+
+/* === FACE === */
+.face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  transition: transform 0.35s ease-out, opacity 0.5s ease;
+}
+
+.eyes {
+  display: flex;
+  gap: 100px;
+}
+
+.eye {
+  width: 45px;
+  height: 45px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+.mouth {
+  width: 35px;
+  height: 35px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  transition: all 0.25s ease-out;
+}
+
+/* === SLEEPING === */
+.sleeping .face { opacity: 0.5; }
+.sleeping .eye { background: #444; }
+.sleeping .mouth { background: #444; }
+.sleeping .activity { color: rgba(255,255,255,0.15); }
+.sleeping .status { color: rgba(255,255,255,0.1); }
+
+/* === STATE MOUTHS === */
+.thinking .mouth { width: 18px; height: 18px; border-radius: 50%; transform: translateX(12px); }
+.talking .mouth { border-radius: 8px; }
+.listening .mouth { width: 22px; height: 22px; border-radius: 50%; }
+.working .mouth { width: 28px; height: 10px; border-radius: 5px; }
+.processing .mouth { width: 30px; height: 12px; border-radius: 6px; }
+.curious .mouth { width: 18px; height: 22px; border-radius: 50%; }
+.happy .mouth { width: 55px; height: 22px; border-radius: 4px 4px 28px 28px; }
+.excited .mouth { width: 48px; height: 38px; border-radius: 8px 8px 24px 24px; }
+.focused .mouth { width: 30px; height: 8px; border-radius: 4px; }
+.confused .mouth { width: 26px; height: 14px; border-radius: 50%; transform: rotate(10deg) translateX(8px); }
+.proud .mouth { width: 48px; height: 14px; border-radius: 4px 4px 22px 22px; }
+.bored .mouth { width: 38px; height: 5px; border-radius: 3px; transform: rotate(-4deg); }
+.surprised .mouth { width: 26px; height: 36px; border-radius: 50%; }
+.sleeping .mouth { width: 24px; height: 4px; border-radius: 2px; }
+
+/* === STATE EYES === */
+.thinking .eye { transform: translateY(-8px) scaleY(0.75); }
+.listening .eye { transform: scale(1.1); }
+.working .eye { transform: scaleY(0.7); }
+.processing .eye { transform: scaleY(0.7) scaleX(1.05); }
+.curious .eye { transform: scale(1.12); }
+.happy .eye { border-radius: 50% 50% 4px 4px; transform: scaleY(0.55); }
+.excited .eye { transform: scale(1.15); }
+.focused .eye { transform: scaleY(0.6) scaleX(1.1); }
+.confused .eye.left { transform: translateY(-6px) rotate(-6deg); }
+.confused .eye.right { transform: translateY(4px) rotate(4deg); }
+.proud .eye { border-radius: 4px 4px 50% 50%; transform: scaleY(0.5); }
+.bored .eye { transform: scaleY(0.45) translateY(10px); }
+.surprised .eye { border-radius: 50%; transform: scale(1.3); }
+.sleeping .eye { height: 6px; transform: translateY(18px); border-radius: 3px; }
+
+/* === UI === */
+.activity {
+  position: fixed;
+  bottom: 55px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 17px;
+  color: rgba(0,0,0,0.35);
+  text-align: center;
+  max-width: 80%;
+  transition: all 0.4s ease;
+}
+.activity:empty { opacity: 0; }
+
+.status {
+  position: fixed;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(0,0,0,0.18);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+/* === ZZZ === */
+.zzzContainer {
+  position: fixed;
+  top: 28%;
+  right: 22%;
+  z-index: 50;
+}
+
+.zzz {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(255,255,255,0.5);
+  animation: zzzFloat 2s ease-out infinite;
+}
+
+.zzz:nth-child(1) { font-size: 18px; left: 0; animation-delay: 0s; }
+.zzz:nth-child(2) { font-size: 24px; left: 20px; top: -15px; animation-delay: 0.5s; }
+.zzz:nth-child(3) { font-size: 30px; left: 45px; top: -35px; animation-delay: 1s; }
+
+@keyframes zzzFloat {
+  0% { opacity: 0; transform: translateY(0); }
+  30% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-30px) translateX(10px); }
+}
