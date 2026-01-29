@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useCallback } from 'react'
+import useEasterEggs from '../../hooks/useEasterEggs'
 import styles from './ClawdFace.module.css'
 
 export const STATES = [
@@ -12,12 +13,18 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
   const eyeLRef = useRef(null)
   const eyeRRef = useRef(null)
   const mouthRef = useRef(null)
-  const [internalSleep, setInternalSleep] = useState(false)
+  const [showHelp, setShowHelp] = useState(false)
   const [idleAction, setIdleAction] = useState(null)
   const idleStartRef = useRef(Date.now())
   const animFrameRef = useRef(null)
   const mouseRef = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
   const eyePosRef = useRef({ x: 0, y: 0 })
+
+  // Easter eggs
+  const { handleFaceClick } = useEasterEggs(
+    faceRef, eyeLRef, eyeRRef, mouthRef,
+    () => setShowHelp(prev => !prev)
+  )
 
   // Idle actions
   const idleActions = {
@@ -109,7 +116,7 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
 
   // Random idle animation
   const doRandomIdle = useCallback(() => {
-    if (state !== 'idle' || internalSleep || idleAction) return
+    if (state !== 'idle' || idleAction) return
     
     const actions = Object.keys(idleActions)
     const elapsed = Date.now() - idleStartRef.current
@@ -124,13 +131,13 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
     setIdleAction(pick)
     idleActions[pick]()
     setTimeout(() => setIdleAction(null), 1000)
-  }, [state, internalSleep, idleAction])
+  }, [state, idleAction])
 
   // Mouse tracking for eyes
   useEffect(() => {
     const handleMouse = (e) => {
       mouseRef.current = { x: e.clientX, y: e.clientY }
-      idleStartRef.current = Date.now() // Reset sleep timer
+      idleStartRef.current = Date.now()
     }
     window.addEventListener('mousemove', handleMouse)
     return () => window.removeEventListener('mousemove', handleMouse)
@@ -139,7 +146,7 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
   // Eye tracking animation loop
   useEffect(() => {
     const trackEyes = () => {
-      if (state === 'idle' && !internalSleep && !idleAction && faceRef.current && eyeLRef.current && eyeRRef.current) {
+      if (state === 'idle' && !idleAction && faceRef.current && eyeLRef.current && eyeRRef.current) {
         const rect = faceRef.current.getBoundingClientRect()
         const cx = rect.left + rect.width / 2
         const cy = rect.top + rect.height / 2
@@ -162,7 +169,7 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
     
     animFrameRef.current = requestAnimationFrame(trackEyes)
     return () => cancelAnimationFrame(animFrameRef.current)
-  }, [state, internalSleep, idleAction])
+  }, [state, idleAction])
 
   // Idle animation interval
   useEffect(() => {
@@ -175,24 +182,18 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
     return () => clearInterval(interval)
   }, [state, doRandomIdle])
 
-  // Auto-sleep after 60s idle
+  // Escape to close help
   useEffect(() => {
-    if (state !== 'idle') return
-    
-    const checkSleep = setInterval(() => {
-      if (Date.now() - idleStartRef.current > 60000) {
-        setInternalSleep(true)
-      }
-    }, 10000)
-    
-    return () => clearInterval(checkSleep)
-  }, [state])
-
-  const effectiveState = internalSleep ? 'sleeping' : state
+    const handler = (e) => {
+      if (e.key === 'Escape') setShowHelp(false)
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
 
   return (
-    <div className={`${styles.container} ${styles[effectiveState]}`}>
-      <div className={styles.face} ref={faceRef}>
+    <div className={`${styles.container} ${styles[state]}`}>
+      <div className={styles.face} ref={faceRef} onClick={handleFaceClick}>
         <div className={styles.eyes}>
           <div className={`${styles.eye} ${styles.left}`} ref={eyeLRef} />
           <div className={`${styles.eye} ${styles.right}`} ref={eyeRRef} />
@@ -201,15 +202,33 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
       </div>
       
       {activity && <div className={styles.activity}>{activity}</div>}
-      <div className={styles.status}>{effectiveState}</div>
+      <div className={styles.status}>{state}</div>
       
-      {effectiveState === 'sleeping' && (
+      {state === 'sleeping' && (
         <div className={styles.zzzContainer}>
           <span className={styles.zzz}>z</span>
           <span className={styles.zzz}>z</span>
           <span className={styles.zzz}>z</span>
         </div>
       )}
+
+      {/* Help Panel */}
+      <div className={`${styles.helpPanel} ${showHelp ? styles.visible : ''}`}>
+        <h2>🎭 Easter Eggs</h2>
+        <div className={styles.section}>
+          <div className={styles.sectionTitle}>⌨️ Mots secrets</div>
+          <kbd>dance</kbd> <kbd>love</kbd> <kbd>hello</kbd> <kbd>matrix</kbd>
+        </div>
+        <div className={styles.section}>
+          <div className={styles.sectionTitle}>🖱️ Clics sur le visage</div>
+          3× danse · 5× vertige · 10× rainbow
+        </div>
+        <div className={styles.section}>
+          <div className={styles.sectionTitle}>🎮 Konami</div>
+          <kbd>↑↑↓↓←→←→BA</kbd>
+        </div>
+        <div className={styles.hint}>Appuie <kbd>?</kbd> ou <kbd>Esc</kbd> pour fermer</div>
+      </div>
     </div>
   )
 }

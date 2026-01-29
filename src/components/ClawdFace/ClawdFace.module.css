@@ -149,3 +149,59 @@
   30% { opacity: 0.6; }
   100% { opacity: 0; transform: translateY(-30px) translateX(10px); }
 }
+
+/* === HELP PANEL === */
+.helpPanel {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.95);
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  padding: 25px 35px;
+  border-radius: 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease-out;
+  z-index: 1000;
+  max-width: 320px;
+}
+
+.helpPanel.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+  pointer-events: auto;
+}
+
+.helpPanel h2 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  color: #E8927C;
+}
+
+.section {
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-weight: 600;
+  color: #7CE8A3;
+  font-size: 12px;
+  margin-bottom: 4px;
+}
+
+.helpPanel kbd {
+  background: rgba(255,255,255,0.15);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+.hint {
+  color: rgba(255,255,255,0.4);
+  font-size: 11px;
+  margin-top: 12px;
+}
