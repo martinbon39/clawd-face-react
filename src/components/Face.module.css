@@ -1,0 +1,64 @@
+.face {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  transition: transform 0.35s ease-out, opacity 0.5s ease;
+}
+
+.eyes {
+  display: flex;
+  gap: 100px;
+}
+
+.eye {
+  width: 45px;
+  height: 45px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  transition: all 0.2s ease-out;
+}
+
+.mouth {
+  width: 35px;
+  height: 35px;
+  background: #1a1a1a;
+  border-radius: 4px;
+  transition: all 0.25s ease-out;
+}
+
+/* State-specific eye styles */
+.eye.thinking { transform: translateY(-8px) scaleY(0.75); }
+.eye.listening { transform: scale(1.1); }
+.eye.working, .eye.processing { transform: scaleY(0.7); }
+.eye.curious { transform: scale(1.12); }
+.eye.happy { border-radius: 50% 50% 4px 4px; transform: scaleY(0.55); }
+.eye.excited { transform: scale(1.15); }
+.eye.focused { transform: scaleY(0.6) scaleX(1.1); }
+.eye.proud { border-radius: 4px 4px 50% 50%; transform: scaleY(0.5); }
+.eye.bored { transform: scaleY(0.45) translateY(10px); }
+.eye.surprised { border-radius: 50%; transform: scale(1.3); }
+.eye.sleeping { height: 6px; transform: translateY(18px); border-radius: 3px; }
+
+.eye.left.confused { transform: translateY(-6px) rotate(-6deg); }
+.eye.right.confused { transform: translateY(4px) rotate(4deg); }
+
+/* State-specific mouth styles */
+.mouth.thinking { width: 18px; height: 18px; border-radius: 50%; transform: translateX(12px); }
+.mouth.talking { border-radius: 8px; }
+.mouth.listening { width: 22px; height: 22px; border-radius: 50%; }
+.mouth.working, .mouth.processing { width: 28px; height: 10px; border-radius: 5px; }
+.mouth.curious { width: 18px; height: 22px; border-radius: 50%; }
+.mouth.happy { width: 55px; height: 22px; border-radius: 4px 4px 28px 28px; }
+.mouth.excited { width: 48px; height: 38px; border-radius: 8px 8px 24px 24px; }
+.mouth.focused { width: 30px; height: 8px; border-radius: 4px; }
+.mouth.confused { width: 26px; height: 14px; border-radius: 50%; transform: rotate(10deg) translateX(8px); }
+.mouth.proud { width: 48px; height: 14px; border-radius: 4px 4px 22px 22px; }
+.mouth.bored { width: 38px; height: 5px; border-radius: 3px; transform: rotate(-4deg); }
+.mouth.surprised { width: 26px; height: 36px; border-radius: 50%; }
+.mouth.sleeping { width: 24px; height: 4px; border-radius: 2px; }
+
+/* Sleeping state opacity */
+.sleeping .face { opacity: 0.5; }
+.sleeping .eye { background: #444; }
+.sleeping .mouth { background: #444; }

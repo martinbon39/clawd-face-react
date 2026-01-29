@@ -1,0 +1,18 @@
+.particle {
+  position: fixed;
+  pointer-events: none;
+  font-size: 24px;
+  z-index: 100;
+  animation: float 1.5s ease-out forwards;
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80px) scale(1.3);
+  }
+}

@@ -1,0 +1,49 @@
+.container {
+  position: fixed;
+  top: 28%;
+  right: 22%;
+  z-index: 50;
+}
+
+.z {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: 'Space Grotesk', sans-serif;
+  animation: float 2s ease-out infinite;
+}
+
+.z:nth-child(1) {
+  font-size: 18px;
+  left: 0;
+  animation-delay: 0s;
+}
+
+.z:nth-child(2) {
+  font-size: 24px;
+  left: 20px;
+  top: -15px;
+  animation-delay: 0.5s;
+}
+
+.z:nth-child(3) {
+  font-size: 30px;
+  left: 45px;
+  top: -35px;
+  animation-delay: 1s;
+}
+
+@keyframes float {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) translateX(10px);
+  }
+}
