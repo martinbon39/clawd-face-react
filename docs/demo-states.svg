@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220">
+  <style>
+    .face-bg { transition: fill 0.5s; }
+    .blink { animation: blink 3s ease-in-out infinite; }
+    @keyframes blink {
+      0%, 45%, 55%, 100% { transform: scaleY(1); }
+      50% { transform: scaleY(0.1); }
+    }
+    .thinking-mouth { animation: think-move 2s ease-in-out infinite; }
+    @keyframes think-move {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(5px); }
+    }
+    .talking-mouth { animation: talk 0.3s ease-in-out infinite alternate; }
+    @keyframes talk {
+      from { transform: scaleY(0.7); }
+      to { transform: scaleY(1.3); }
+    }
+    .zzz { animation: float 2s ease-in-out infinite; opacity: 0.7; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); opacity: 0; }
+      30% { opacity: 0.7; }
+      100% { transform: translateY(-15px); opacity: 0; }
+    }
+    .zzz:nth-child(2) { animation-delay: 0.5s; }
+    .zzz:nth-child(3) { animation-delay: 1s; }
+  </style>
+  
+  <!-- IDLE -->
+  <g transform="translate(10,10)">
+    <rect class="face-bg" width="160" height="160" fill="#E8927C" rx="20"/>
+    <g class="blink">
+      <rect x="40" y="50" width="28" height="28" fill="#1a1a1a" rx="3" transform-origin="54 64"/>
+      <rect x="92" y="50" width="28" height="28" fill="#1a1a1a" rx="3" transform-origin="106 64"/>
+    </g>
+    <rect x="62" y="100" width="36" height="36" fill="#1a1a1a" rx="3"/>
+    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">😐 idle</text>
+  </g>
+  
+  <!-- THINKING -->
+  <g transform="translate(185,10)">
+    <rect class="face-bg" width="160" height="160" fill="#7C9FE8" rx="20"/>
+    <rect x="40" y="52" width="28" height="20" fill="#1a1a1a" rx="3"/>
+    <rect x="92" y="52" width="28" height="20" fill="#1a1a1a" rx="3"/>
+    <circle class="thinking-mouth" cx="92" cy="115" r="12" fill="#1a1a1a"/>
+    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">🤔 thinking</text>
+  </g>
+  
+  <!-- TALKING -->
+  <g transform="translate(360,10)">
+    <rect class="face-bg" width="160" height="160" fill="#7CE8A3" rx="20"/>
+    <rect x="40" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect x="92" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect class="talking-mouth" x="55" y="95" width="50" height="45" fill="#1a1a1a" rx="6" transform-origin="80 117"/>
+    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">💬 talking</text>
+  </g>
+  
+  <!-- WORKING -->
+  <g transform="translate(535,10)">
+    <rect class="face-bg" width="160" height="160" fill="#5C7C5C" rx="20"/>
+    <rect x="40" y="55" width="28" height="18" fill="#1a1a1a" rx="3"/>
+    <rect x="92" y="55" width="28" height="18" fill="#1a1a1a" rx="3"/>
+    <rect x="55" y="105" width="50" height="14" fill="#1a1a1a" rx="4"/>
+    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">💻 working</text>
+  </g>
+  
+  <!-- SLEEPING -->
+  <g transform="translate(710,10)">
+    <rect class="face-bg" width="160" height="160" fill="#1a1a24" rx="20"/>
+    <rect x="40" y="62" width="28" height="6" fill="#444" rx="2"/>
+    <rect x="92" y="62" width="28" height="6" fill="#444" rx="2"/>
+    <rect x="60" y="105" width="40" height="5" fill="#444" rx="2"/>
+    <text class="zzz" x="125" y="45" fill="#fff" font-family="system-ui" font-size="14" font-weight="bold">z</text>
+    <text class="zzz" x="135" y="35" fill="#fff" font-family="system-ui" font-size="18" font-weight="bold">z</text>
+    <text class="zzz" x="148" y="22" fill="#fff" font-family="system-ui" font-size="22" font-weight="bold">z</text>
+    <text x="80" y="195" text-anchor="middle" fill="#666" font-family="system-ui" font-size="14" font-weight="500">😴 sleeping</text>
+  </g>
+</svg>

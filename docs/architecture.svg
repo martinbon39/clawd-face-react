@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <style>
+    text { font-family: system-ui, sans-serif; }
+    .box { stroke: #333; stroke-width: 2; rx: 8; }
+    .arrow { stroke: #666; stroke-width: 2; fill: none; marker-end: url(#arrowhead); }
+    .label { font-size: 12px; fill: #666; }
+    .title { font-size: 14px; font-weight: 600; fill: #333; }
+  </style>
+  
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  
+  <!-- Server Box -->
+  <rect x="50" y="30" width="500" height="340" fill="#f8f9fa" class="box" stroke-dasharray="5,5"/>
+  <text x="70" y="55" class="title">🖥️ Your Server (Clawdbot host)</text>
+  
+  <!-- Clawdbot -->
+  <rect x="80" y="80" width="140" height="60" fill="#6366f1" class="box" stroke="none"/>
+  <text x="150" y="115" text-anchor="middle" fill="#fff" font-size="14" font-weight="500">Clawdbot</text>
+  
+  <!-- Sessions -->
+  <rect x="280" y="80" width="140" height="60" fill="#fff" class="box"/>
+  <text x="350" y="108" text-anchor="middle" class="title">sessions/</text>
+  <text x="350" y="125" text-anchor="middle" class="label">*.jsonl</text>
+  
+  <!-- Arrow: Clawdbot -> Sessions -->
+  <path d="M 220 110 L 270 110" class="arrow"/>
+  <text x="245" y="100" text-anchor="middle" class="label">writes</text>
+  
+  <!-- Watcher -->
+  <rect x="280" y="170" width="140" height="60" fill="#22c55e" class="box" stroke="none"/>
+  <text x="350" y="198" text-anchor="middle" fill="#fff" font-size="13" font-weight="500">watcher.js</text>
+  <text x="350" y="215" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">polls 50ms</text>
+  
+  <!-- Arrow: Sessions -> Watcher -->
+  <path d="M 350 140 L 350 165" class="arrow"/>
+  
+  <!-- State.json -->
+  <rect x="280" y="260" width="140" height="50" fill="#fff" class="box"/>
+  <text x="350" y="290" text-anchor="middle" class="title">state.json</text>
+  
+  <!-- Arrow: Watcher -> State -->
+  <path d="M 350 230 L 350 255" class="arrow"/>
+  <text x="380" y="245" class="label">writes</text>
+  
+  <!-- Server -->
+  <rect x="80" y="240" width="140" height="80" fill="#f59e0b" class="box" stroke="none"/>
+  <text x="150" y="275" text-anchor="middle" fill="#fff" font-size="13" font-weight="500">server.js</text>
+  <text x="150" y="295" text-anchor="middle" fill="rgba(255,255,255,0.8)" font-size="11">:3333</text>
+  
+  <!-- Arrow: State -> Server -->
+  <path d="M 280 285 L 225 285" class="arrow"/>
+  <text x="252" y="275" class="label">serves</text>
+  
+  <!-- Cloudflared -->
+  <rect x="80" y="170" width="140" height="50" fill="#ff6b35" class="box" stroke="none"/>
+  <text x="150" y="200" text-anchor="middle" fill="#fff" font-size="13" font-weight="500">cloudflared</text>
+  
+  <!-- Arrow: Server -> Cloudflared -->
+  <path d="M 150 240 L 150 225" class="arrow"/>
+  
+  <!-- Internet -->
+  <rect x="620" y="140" width="150" height="120" fill="#e0f2fe" class="box"/>
+  <text x="695" y="175" text-anchor="middle" class="title">🌐 Internet</text>
+  <text x="695" y="200" text-anchor="middle" font-size="13" fill="#0369a1">face.domain.com</text>
+  <text x="695" y="235" text-anchor="middle" font-size="24">🖥️</text>
+  
+  <!-- Arrow: Server to Internet -->
+  <path d="M 220 195 C 400 195, 500 200, 615 200" class="arrow"/>
+  <text x="450" y="185" class="label">Cloudflare Tunnel</text>
+</svg>
