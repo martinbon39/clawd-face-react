@@ -33,26 +33,43 @@ The face automatically reflects what your AI is doing:
 
 ## 🚀 Quick Start
 
-### Option 1: Let Your Claude Do It (Recommended)
+### One Command (Recommended)
+
+```bash
+npx clawd-face
+```
+
+That's it! This will:
+- ✅ Auto-detect your Clawdbot installation
+- ✅ Start the face server
+- ✅ Create a public tunnel
+- ✅ Give you a URL to open
+
+```
+🤖 Clawd Face
+
+✅ Found Clawdbot at ~/.clawdbot
+📍 Starting watcher...
+📍 Starting server...
+📍 Creating public tunnel...
+
+════════════════════════════════════════════════
+  🎉 Clawd Face is live!
+  
+  Public URL:  https://abc123.loca.lt
+  Local URL:   http://localhost:3333
+════════════════════════════════════════════════
+```
+
+### Alternative: Let Your Claude Do It
 
 Just send this to your Claude:
 
 ```
-Setup clawd-face for me. Clone https://github.com/martinbon39/clawd-face-react, 
-install dependencies, configure the watcher to read my Clawdbot sessions at 
-~/.clawdbot/agents/main/sessions/sessions.json, run with pm2, and help me 
-setup a Cloudflare tunnel to expose it.
+Run npx clawd-face for me and give me the URL
 ```
 
-**Your Claude will handle everything.** ✨
-
-### Option 2: One-Line Install
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/martinbon39/clawd-face-react/main/scripts/install.sh | bash
-```
-
-### Option 3: Manual Setup
+### Alternative: Manual Setup
 
 <details>
 <summary>Click to expand</summary>
@@ -65,13 +82,10 @@ cd clawd-face-react
 # 2. Install & build
 npm install && npm run build
 
-# 3. Start services (requires pm2: npm i -g pm2)
-cd watcher
-pm2 start watcher.js --name clawd-face-watcher
-pm2 start server.js --name clawd-face-server
-pm2 save
-
-# 4. Open http://localhost:3333
+# 3. Start
+npm start
+# Or with pm2 for background:
+pm2 start "npm start" --name clawd-face
 ```
 
 </details>
