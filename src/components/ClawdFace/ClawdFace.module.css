@@ -126,9 +126,9 @@
 
 /* === ZZZ === */
 .zzzContainer {
-  position: fixed;
-  top: 28%;
-  right: 22%;
+  position: absolute;
+  top: 20%;
+  left: 58%;
   z-index: 50;
 }
 
@@ -136,13 +136,15 @@
   position: absolute;
   font-size: 24px;
   font-weight: bold;
-  color: rgba(255,255,255,0.5);
+  color: #fff;
+  text-shadow: none;
+  background: none;
   animation: zzzFloat 2s ease-out infinite;
 }
 
-.zzz:nth-child(1) { font-size: 18px; left: 0; animation-delay: 0s; }
-.zzz:nth-child(2) { font-size: 24px; left: 20px; top: -15px; animation-delay: 0.5s; }
-.zzz:nth-child(3) { font-size: 30px; left: 45px; top: -35px; animation-delay: 1s; }
+.zzz:nth-child(1) { font-size: 16px; left: 0; top: 0; animation-delay: 0s; }
+.zzz:nth-child(2) { font-size: 20px; left: 15px; top: -12px; animation-delay: 0.5s; }
+.zzz:nth-child(3) { font-size: 24px; left: 32px; top: -28px; animation-delay: 1s; }
 
 @keyframes zzzFloat {
   0% { opacity: 0; transform: translateY(0); }

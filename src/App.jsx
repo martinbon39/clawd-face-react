@@ -25,10 +25,11 @@ function App() {
     return () => clearInterval(interval)
   }, [])
 
-  // Keyboard shortcuts
+  // Keyboard shortcuts (Ctrl+D for debug)
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === 'd' || e.key === 'D') {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+        e.preventDefault()
         setShowDebug(prev => !prev)
       }
       // Number keys for debug state switching
@@ -47,7 +48,7 @@ function App() {
       
       {showDebug && (
         <div className="debug-panel">
-          <div className="debug-title">Debug (D to hide)</div>
+          <div className="debug-title">Debug (Ctrl+D to hide)</div>
           <div className="debug-state">State: {state}</div>
           <div className="debug-buttons">
             {STATES.map((s, i) => (

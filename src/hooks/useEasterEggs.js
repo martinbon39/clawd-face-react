@@ -90,11 +90,13 @@ export default function useEasterEggs(faceRef, eyeLRef, eyeRRef, mouthRef, onSho
         for (let i = 0; i < 15; i++) {
           setTimeout(() => particles(Math.random() > 0.5 ? '1' : '0', 1, true), i * 60)
         }
-        document.body.style.background = '#000'
+        // Add matrix class to container for black background
+        const container = face.parentElement
+        container.classList.add('matrix-mode')
         face.style.filter = 'drop-shadow(0 0 8px #0f0)'
         eyeL.style.background = eyeR.style.background = mouth.style.background = '#0f0'
         setTimeout(() => {
-          document.body.style.background = ''
+          container.classList.remove('matrix-mode')
           face.style.filter = ''
           eyeL.style.background = eyeR.style.background = mouth.style.background = ''
         }, 2500)
@@ -119,8 +121,9 @@ export default function useEasterEggs(faceRef, eyeLRef, eyeRRef, mouthRef, onSho
   // Keyboard handler
   useEffect(() => {
     const handler = (e) => {
-      // Help toggle
-      if (e.key === '?' || e.key === 'h' || e.key === 'H') {
+      // Help toggle (Ctrl+H or ?)
+      if (e.key === '?' || ((e.ctrlKey || e.metaKey) && e.key === 'h')) {
+        e.preventDefault()
         onShowHelp?.()
         return
       }

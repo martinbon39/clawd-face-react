@@ -245,7 +245,6 @@ export default function ClawdFace({ state = 'idle', activity = '' }) {
       </div>
       
       {activity && !internalSleep && <div className={styles.activity}>{activity}</div>}
-      <div className={styles.status}>{effectiveState}</div>
       
       {effectiveState === 'sleeping' && (
         <div className={styles.zzzContainer}>

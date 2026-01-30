@@ -84,3 +84,8 @@ html, body, #root, .app {
   75% { background: #7C9FE8 !important; }
   100% { background: #C77CE8 !important; }
 }
+
+/* Matrix mode */
+.matrix-mode {
+  background: #000 !important;
+}
