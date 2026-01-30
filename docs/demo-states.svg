@@ -1,78 +1,84 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 220">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240">
   <style>
-    .face-bg { transition: fill 0.5s; }
-    .blink { animation: blink 3s ease-in-out infinite; }
+    .blink { animation: blink 3s ease-in-out infinite; transform-origin: center; }
     @keyframes blink {
-      0%, 45%, 55%, 100% { transform: scaleY(1); }
+      0%, 42%, 58%, 100% { transform: scaleY(1); }
       50% { transform: scaleY(0.1); }
     }
-    .thinking-mouth { animation: think-move 2s ease-in-out infinite; }
-    @keyframes think-move {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(5px); }
-    }
-    .talking-mouth { animation: talk 0.3s ease-in-out infinite alternate; }
+    .talk { animation: talk 0.3s ease-in-out infinite alternate; transform-origin: center; }
     @keyframes talk {
-      from { transform: scaleY(0.7); }
-      to { transform: scaleY(1.3); }
+      from { transform: scaleY(0.8); }
+      to { transform: scaleY(1.2); }
     }
-    .zzz { animation: float 2s ease-in-out infinite; opacity: 0.7; }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); opacity: 0; }
-      30% { opacity: 0.7; }
-      100% { transform: translateY(-15px); opacity: 0; }
-    }
+    .zzz { animation: zzz 2s ease-out infinite; }
+    .zzz:nth-child(1) { animation-delay: 0s; }
     .zzz:nth-child(2) { animation-delay: 0.5s; }
     .zzz:nth-child(3) { animation-delay: 1s; }
+    @keyframes zzz {
+      0% { opacity: 0; transform: translateY(0); }
+      30% { opacity: 0.7; }
+      100% { opacity: 0; transform: translateY(-20px) translateX(5px); }
+    }
   </style>
   
-  <!-- IDLE -->
+  <!-- IDLE - #E8927C -->
   <g transform="translate(10,10)">
-    <rect class="face-bg" width="160" height="160" fill="#E8927C" rx="20"/>
+    <rect width="160" height="180" fill="#E8927C" rx="16"/>
+    <!-- Eyes: 45x45 scaled to fit, with blink -->
     <g class="blink">
-      <rect x="40" y="50" width="28" height="28" fill="#1a1a1a" rx="3" transform-origin="54 64"/>
-      <rect x="92" y="50" width="28" height="28" fill="#1a1a1a" rx="3" transform-origin="106 64"/>
+      <rect x="35" y="55" width="32" height="32" fill="#1a1a1a" rx="3"/>
+      <rect x="93" y="55" width="32" height="32" fill="#1a1a1a" rx="3"/>
     </g>
-    <rect x="62" y="100" width="36" height="36" fill="#1a1a1a" rx="3"/>
-    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">😐 idle</text>
+    <!-- Mouth: 35x35 -->
+    <rect x="62" y="110" width="25" height="25" fill="#1a1a1a" rx="3"/>
+    <text x="80" y="215" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500" opacity="0.5">idle</text>
   </g>
   
-  <!-- THINKING -->
+  <!-- THINKING - #7C9FE8 -->
   <g transform="translate(185,10)">
-    <rect class="face-bg" width="160" height="160" fill="#7C9FE8" rx="20"/>
-    <rect x="40" y="52" width="28" height="20" fill="#1a1a1a" rx="3"/>
-    <rect x="92" y="52" width="28" height="20" fill="#1a1a1a" rx="3"/>
-    <circle class="thinking-mouth" cx="92" cy="115" r="12" fill="#1a1a1a"/>
-    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">🤔 thinking</text>
+    <rect width="160" height="180" fill="#7C9FE8" rx="16"/>
+    <!-- Eyes: translateY(-8px) scaleY(0.75) = shorter, higher -->
+    <rect x="35" y="50" width="32" height="24" fill="#1a1a1a" rx="3"/>
+    <rect x="93" y="50" width="32" height="24" fill="#1a1a1a" rx="3"/>
+    <!-- Mouth: 18x18 circle, translateX(12px) -->
+    <circle cx="92" cy="118" r="10" fill="#1a1a1a"/>
+    <text x="80" y="215" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500" opacity="0.5">thinking</text>
   </g>
   
-  <!-- TALKING -->
+  <!-- TALKING - #7CE8A3 -->
   <g transform="translate(360,10)">
-    <rect class="face-bg" width="160" height="160" fill="#7CE8A3" rx="20"/>
-    <rect x="40" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
-    <rect x="92" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
-    <rect class="talking-mouth" x="55" y="95" width="50" height="45" fill="#1a1a1a" rx="6" transform-origin="80 117"/>
-    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">💬 talking</text>
+    <rect width="160" height="180" fill="#7CE8A3" rx="16"/>
+    <!-- Eyes: normal -->
+    <rect x="35" y="55" width="32" height="32" fill="#1a1a1a" rx="3"/>
+    <rect x="93" y="55" width="32" height="32" fill="#1a1a1a" rx="3"/>
+    <!-- Mouth: animated, border-radius 8px -->
+    <rect class="talk" x="55" y="105" width="40" height="35" fill="#1a1a1a" rx="6"/>
+    <text x="80" y="215" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500" opacity="0.5">talking</text>
   </g>
   
-  <!-- WORKING -->
+  <!-- WORKING - #5C7C5C -->
   <g transform="translate(535,10)">
-    <rect class="face-bg" width="160" height="160" fill="#5C7C5C" rx="20"/>
-    <rect x="40" y="55" width="28" height="18" fill="#1a1a1a" rx="3"/>
-    <rect x="92" y="55" width="28" height="18" fill="#1a1a1a" rx="3"/>
-    <rect x="55" y="105" width="50" height="14" fill="#1a1a1a" rx="4"/>
-    <text x="80" y="195" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500">💻 working</text>
+    <rect width="160" height="180" fill="#5C7C5C" rx="16"/>
+    <!-- Eyes: scaleY(0.7) = shorter -->
+    <rect x="35" y="58" width="32" height="22" fill="#1a1a1a" rx="3"/>
+    <rect x="93" y="58" width="32" height="22" fill="#1a1a1a" rx="3"/>
+    <!-- Mouth: 28x10, flat -->
+    <rect x="56" y="115" width="38" height="12" fill="#1a1a1a" rx="4"/>
+    <text x="80" y="215" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" font-weight="500" opacity="0.5">working</text>
   </g>
   
-  <!-- SLEEPING -->
+  <!-- SLEEPING - #1a1a24 -->
   <g transform="translate(710,10)">
-    <rect class="face-bg" width="160" height="160" fill="#1a1a24" rx="20"/>
-    <rect x="40" y="62" width="28" height="6" fill="#444" rx="2"/>
-    <rect x="92" y="62" width="28" height="6" fill="#444" rx="2"/>
-    <rect x="60" y="105" width="40" height="5" fill="#444" rx="2"/>
-    <text class="zzz" x="125" y="45" fill="#fff" font-family="system-ui" font-size="14" font-weight="bold">z</text>
-    <text class="zzz" x="135" y="35" fill="#fff" font-family="system-ui" font-size="18" font-weight="bold">z</text>
-    <text class="zzz" x="148" y="22" fill="#fff" font-family="system-ui" font-size="22" font-weight="bold">z</text>
-    <text x="80" y="195" text-anchor="middle" fill="#666" font-family="system-ui" font-size="14" font-weight="500">😴 sleeping</text>
+    <rect width="160" height="180" fill="#1a1a24" rx="16"/>
+    <!-- Eyes: height 6px, translateY(18px), color #444 -->
+    <rect x="35" y="78" width="32" height="5" fill="#444" rx="2"/>
+    <rect x="93" y="78" width="32" height="5" fill="#444" rx="2"/>
+    <!-- Mouth: 24x4, color #444 -->
+    <rect x="58" y="120" width="34" height="5" fill="#444" rx="2"/>
+    <!-- Zzz -->
+    <text class="zzz" x="130" y="55" fill="#fff" font-family="system-ui" font-size="14" font-weight="bold">z</text>
+    <text class="zzz" x="140" y="42" fill="#fff" font-family="system-ui" font-size="18" font-weight="bold">z</text>
+    <text class="zzz" x="152" y="26" fill="#fff" font-family="system-ui" font-size="22" font-weight="bold">z</text>
+    <text x="80" y="215" text-anchor="middle" fill="#444" font-family="system-ui" font-size="14" font-weight="500">sleeping</text>
   </g>
 </svg>

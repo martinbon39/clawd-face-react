@@ -1,46 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
-  <!-- Idle -->
+  <!-- Idle - #E8927C -->
   <g transform="translate(0,0)">
-    <rect width="150" height="200" fill="#E8927C" rx="10"/>
-    <rect x="40" y="60" width="25" height="25" fill="#1a1a1a" rx="2"/>
-    <rect x="85" y="60" width="25" height="25" fill="#1a1a1a" rx="2"/>
-    <rect x="57" y="110" width="20" height="20" fill="#1a1a1a" rx="2"/>
-    <text x="75" y="180" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" opacity="0.5">idle</text>
+    <rect width="150" height="170" fill="#E8927C" rx="12"/>
+    <rect x="38" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect x="84" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect x="57" y="100" width="22" height="22" fill="#1a1a1a" rx="3"/>
+    <text x="75" y="190" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="13" opacity="0.4">idle</text>
   </g>
   
-  <!-- Thinking -->
+  <!-- Thinking - #7C9FE8 -->
   <g transform="translate(165,0)">
-    <rect width="150" height="200" fill="#7C9FE8" rx="10"/>
-    <rect x="40" y="55" width="25" height="18" fill="#1a1a1a" rx="2"/>
-    <rect x="85" y="55" width="25" height="18" fill="#1a1a1a" rx="2"/>
-    <circle cx="85" cy="115" r="8" fill="#1a1a1a"/>
-    <text x="75" y="180" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" opacity="0.5">thinking</text>
+    <rect width="150" height="170" fill="#7C9FE8" rx="12"/>
+    <rect x="38" y="48" width="28" height="21" fill="#1a1a1a" rx="3"/>
+    <rect x="84" y="48" width="28" height="21" fill="#1a1a1a" rx="3"/>
+    <circle cx="83" cy="108" r="9" fill="#1a1a1a"/>
+    <text x="75" y="190" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="13" opacity="0.4">thinking</text>
   </g>
   
-  <!-- Talking -->
+  <!-- Talking - #7CE8A3 -->
   <g transform="translate(330,0)">
-    <rect width="150" height="200" fill="#7CE8A3" rx="10"/>
-    <rect x="40" y="60" width="25" height="25" fill="#1a1a1a" rx="2"/>
-    <rect x="85" y="60" width="25" height="25" fill="#1a1a1a" rx="2"/>
-    <rect x="52" y="105" width="30" height="30" fill="#1a1a1a" rx="4"/>
-    <text x="75" y="180" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" opacity="0.5">talking</text>
+    <rect width="150" height="170" fill="#7CE8A3" rx="12"/>
+    <rect x="38" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect x="84" y="50" width="28" height="28" fill="#1a1a1a" rx="3"/>
+    <rect x="52" y="95" width="32" height="30" fill="#1a1a1a" rx="5"/>
+    <text x="75" y="190" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="13" opacity="0.4">talking</text>
   </g>
   
-  <!-- Working -->
+  <!-- Working - #5C7C5C -->
   <g transform="translate(495,0)">
-    <rect width="150" height="200" fill="#5C7C5C" rx="10"/>
-    <rect x="40" y="65" width="25" height="17" fill="#1a1a1a" rx="2"/>
-    <rect x="85" y="65" width="25" height="17" fill="#1a1a1a" rx="2"/>
-    <rect x="50" y="110" width="35" height="10" fill="#1a1a1a" rx="3"/>
-    <text x="75" y="180" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" opacity="0.5">working</text>
+    <rect width="150" height="170" fill="#5C7C5C" rx="12"/>
+    <rect x="38" y="53" width="28" height="20" fill="#1a1a1a" rx="3"/>
+    <rect x="84" y="53" width="28" height="20" fill="#1a1a1a" rx="3"/>
+    <rect x="50" y="105" width="36" height="10" fill="#1a1a1a" rx="3"/>
+    <text x="75" y="190" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="13" opacity="0.4">working</text>
   </g>
   
-  <!-- Curious -->
+  <!-- Curious - #C77CE8 -->
   <g transform="translate(660,0)">
-    <rect width="130" height="200" fill="#C77CE8" rx="10"/>
-    <rect x="30" y="55" width="28" height="28" fill="#1a1a1a" rx="2"/>
-    <rect x="72" y="55" width="28" height="28" fill="#1a1a1a" rx="2"/>
-    <ellipse cx="65" cy="115" rx="9" ry="11" fill="#1a1a1a"/>
-    <text x="65" y="180" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="14" opacity="0.5">curious</text>
+    <rect width="130" height="170" fill="#C77CE8" rx="12"/>
+    <rect x="28" y="48" width="31" height="31" fill="#1a1a1a" rx="3"/>
+    <rect x="71" y="48" width="31" height="31" fill="#1a1a1a" rx="3"/>
+    <ellipse cx="65" cy="108" rx="9" ry="11" fill="#1a1a1a"/>
+    <text x="65" y="190" text-anchor="middle" fill="#1a1a1a" font-family="system-ui" font-size="13" opacity="0.4">curious</text>
   </g>
 </svg>
